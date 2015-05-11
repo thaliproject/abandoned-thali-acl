@@ -36,7 +36,7 @@ ThaliAclDb.prototype.isAllowed = function (user, resource) {
 
 /**
  * Adds a role to the ACL database.
- * @param {String} role The role name to add,
+ * @param {String} role The role name to add.
  * @returns {Promise} a promise which returns no value on success.
  */
 ThaliAclDb.prototype.addRole = function (role) {

@@ -34,7 +34,6 @@ $ npm install thali-acl
 - [`getUsersByRole`](#getusersbyrole)
 
 ### <a id="constructor"></a>`new ThaliAclDb(name, options)`
-<a href="#constructor">#</a>[&#x24C8;]
 
 Creates a new instance of the ThaliAclDb with a url/file location and options
 
@@ -52,7 +51,6 @@ var db = new ThaliAclDb('acl', { db: require('memdown') });
 * * *
 
 ### <a id="isallowed"></a>`ThaliAclDb.prototype.isAllowed(user, resource)`
-<a href="#isallowed">#</a>[&#x24C8;]
 
 Determines whether the user is allowed access to a given resource.
 
@@ -87,6 +85,199 @@ db.addRole('guest')
 ```
 * * *
 
+### <a id="addrole"></a>`ThaliAclDb.prototype.addRole(role)`
+
+Adds a role to the ACL database.
+
+#### Arguments ####
+1. `role` *(String)*: The role name to add.
+
+#### Returns ####
+A `Promise` which returns nothing on success.
+
+#### Example
+
+```js
+var ThaliAclDb = require('thali-acl');
+
+var db = new ThaliAclDb('acl', { db: require('memdown') });
+
+db.addRole('guest')
+  .then(function () {
+    console.log('guest added')
+  })
+  .catch(function(err) {
+    console.log(err);
+  });
+// => guest added
+```
+* * *
+
+### <a id="removerole"></a>`ThaliAclDb.prototype.removeRole(role)`
+
+Removes a role from the ACL database.
+
+#### Arguments ####
+1. `role` *(String)*: The role name to remove.
+
+#### Returns ####
+A `Promise` which returns nothing on success.
+
+#### Example
+
+```js
+var ThaliAclDb = require('thali-acl');
+
+var db = new ThaliAclDb('acl', { db: require('memdown') });
+
+db.addRole('guest')
+  .then(function () {
+    return db.removeRole('guest');
+  })
+  .then(function () {
+    console.log('guest removed')
+  })
+  .catch(function(err) {
+    console.log(err);
+  });
+// => guest removed
+```
+* * *
+
+### <a id="addusertorole"></a>`ThaliAclDb.prototype.addUserToRole(user, role)`
+
+Adds a user to a given role.
+
+#### Arguments ####
+1. `user` *(String)*: The user to add to the role.
+1. `role` *(String)*: The role name to add to the user.
+
+#### Returns ####
+A `Promise` which returns nothing on success.
+
+#### Example
+
+```js
+var ThaliAclDb = require('thali-acl');
+
+var db = new ThaliAclDb('acl', { db: require('memdown') });
+
+db.addRole('guest')
+  .then(function () {
+    return db.addUserToRole('thali', 'guest');
+  })
+  .then(function () {
+    console.log('thali added to guest role');
+  })
+  .catch(function(err) {
+    console.log(err);
+  });
+// => thali added to guest role
+```
+* * *
+
+### <a id="removeuserfromrole"></a>`ThaliAclDb.prototype.removeUserFromRole(user, role)`
+
+Removes a user from a given role.
+
+#### Arguments ####
+1. `user` *(String)*: The user to remove from the role.
+1. `role` *(String)*: The role name to remove from the user.
+
+#### Returns ####
+A `Promise` which returns nothing on success.
+
+#### Example
+
+```js
+var ThaliAclDb = require('thali-acl');
+
+var db = new ThaliAclDb('acl', { db: require('memdown') });
+
+db.addRole('guest')
+  .then(function () {
+    return db.addUserToRole('thali', 'guest');
+  })
+  .then(function () {
+    return db.removeUserFromRole('thali', 'guest');
+  })
+  .then(function () {
+    console.log('thali removed from guest role');
+  })
+  .catch(function(err) {
+    console.log(err);
+  });
+// => thali added from guest role.
+```
+* * *
+
+### <a id="getrolesbyuser"></a>`ThaliAclDb.prototype.getRolesByUser(user)`
+
+Gets the roles for the given user as an array.
+
+#### Arguments ####
+1. `user` *(String)*: The user to get the roles for.
+
+#### Returns ####
+A `Promise` which on success returns an array of roles for the given user.
+
+#### Example
+
+```js
+var ThaliAclDb = require('thali-acl');
+
+var db = new ThaliAclDb('acl', { db: require('memdown') });
+
+db.addRole('guest')
+  .then(function () {
+    return db.addUserToRole('thali', 'guest');
+  })
+  .then(function () {
+    return db.getRolesByUser('thali');
+  })
+  .then(function (roles) {
+    console.log(roles)
+  })
+  .catch(function(err) {
+    console.log(err);
+  });
+// => [guest]
+```
+* * *
+
+### <a id="getusersbyrole"></a>`ThaliAclDb.prototype.getUsersByRole(role)`
+
+Gets the users by the given role.
+
+#### Arguments ####
+1. `user` *(String)*: The user to get the roles for.
+
+#### Returns ####
+A `Promise` which on success returns an array of roles for the given user.
+
+#### Example
+
+```js
+var ThaliAclDb = require('thali-acl');
+
+var db = new ThaliAclDb('acl', { db: require('memdown') });
+
+db.addRole('guest')
+  .then(function () {
+    return db.addUserToRole('thali', 'guest');
+  })
+  .then(function () {
+    return db.getUsersByRole('guest');
+  })
+  .then(function (users) {
+    console.log(users)
+  })
+  .catch(function(err) {
+    console.log(err);
+  });
+// => [thali]
+```
+* * *
 
 # LICENSE #
 
