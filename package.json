@@ -24,6 +24,7 @@
   "homepage": "https://github.com/thaliproject/thali-acl",
   "devDependencies": {
     "chai": "^2.3.0",
+    "memdown": "^1.0.0",
     "mocha": "^2.2.4"
   },
   "dependencies": {

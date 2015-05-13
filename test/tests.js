@@ -1,10 +1,17 @@
 var assert = require("assert");
+var ThaliAclDb = require('../.');
 
-describe('Array', function() {
-  describe('#indexOf()', function() {
-    it('should return -1 when the value is not present', function() {
-      assert.equal(-1, [1,2,3].indexOf(5));
-      assert.equal(-1, [1,2,3].indexOf(0));
-    });
+describe("Add roles", function(){
+  it("admin, guest, member roles", function(done){
+    var  db = new ThaliAclDb('acl', { db: require('memdown') });
+    db.addRole('admin')
+      .then(function() {
+        assert(true);
+        done();
+      })
+      .catch(function (err) {
+        assert(false);
+        done();
+      });
   });
 });

@@ -21,7 +21,7 @@ ThaliAclDb.prototype._init = function () {
   this._addUserRoles = Promise.promisify(this._acl.addUserRoles);
   this._removeUserRoles = Promise.promisify(this._acl.removeUserRoles);
   this._userRoles = Promise.promisify(this._acl.userRoles);
-  this._roleUsers = Promise.promisify(this._acl_roleUsers);
+  this._roleUsers = Promise.promisify(this._acl.roleUsers);
 };
 
 /**
