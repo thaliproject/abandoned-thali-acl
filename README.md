@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/thaliproject/thali-_acl.png)](https://travis-ci.org/thaliproject/thali-acl)
+
 # thali-acl The ACL Library for the Thali Project #
 
 This is the ACL library for the Thali Project.  This provides access to the ACL PouchDB database via the [node_acl_pouchdb](https://github.com/thaliproject/node_acl_pouchdb) project.  
