@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/thaliproject/thali-_acl.png)](https://travis-ci.org/thaliproject/thali-acl)
+[![Build Status](https://travis-ci.org/thaliproject/thali-acl.svg)](https://travis-ci.org/thaliproject/thali-acl)
 
 # thali-acl The ACL Library for the Thali Project #
 
