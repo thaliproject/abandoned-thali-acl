@@ -12,6 +12,41 @@ describe ("Initialize ACL", function(){
 });
 
 
+describe("isAllowed", function(){
+    it("User Joy should be allowed to guest role", function(done) {
+        db.addRole('guest')
+            .then(function () {
+                return db.addUserToRole('joy', 'guest');
+            })
+            .then(function () {
+                return db.isAllowed('joy', 'guest');
+            })
+            .then(function (isAllowed) {
+                assert.equal(isAllowed,true);
+                done();
+            })
+            .catch(function(err) {
+               done(err);
+            });
+    });
+    it("User Joy should not be allowed to admin role", function(done) {
+        db.addRole('admin')
+            .then(function () {
+                return db.addUserToRole('joy', 'guest');
+            })
+            .then(function () {
+                return db.isAllowed('joy', 'admin');
+            })
+            .then(function (isAllowed) {
+                assert.equal(isAllowed,false);
+                done();
+            })
+            .catch(function(err) {
+                done(err);
+            });
+    });
+});
+
 describe("Add roles", function(){
     it("Add admin role", function(done) {
       db.addRole('admin')
@@ -82,7 +117,6 @@ describe("Remove non-existing/invalid roles", function(){
     it("Remove guest role (which is already removed) should fail", function(done){
         db.removeRole('guest')
             .then(function() {
-                console.log("guest role removed");
                 assert(false);
                 done();
             })
