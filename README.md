@@ -209,7 +209,7 @@ db.addRole('guest')
   .catch(function(err) {
     console.log(err);
   });
-// => thali added from guest role.
+// => user thali removed from guest role.
 ```
 * * *
 
