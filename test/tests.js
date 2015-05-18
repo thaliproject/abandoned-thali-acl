@@ -187,7 +187,7 @@ describe("Get users by role", function() {
       .then(function (users) {
         assert.equal(users,'thali');
         done();
-      });
+      })
       .catch(done);
   });
 });
